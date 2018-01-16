@@ -1,29 +1,57 @@
 <!-- builds html from Docbook documents -->
  
 <project name="mahabharatha" default="prepare">
-	
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
 	<property name="docbook.xsl"  value="xsl/mb.xsl"/>
+	<property name="tmp.dir" value="html/"/>
 	<property name="out.dir" value="docs/"/>
 	<property name="output.zip" value="vyas-site.zip"/>
 
 
 	<target name="prepare" description="creates pages by docbook">
+		<!-- generate html files by docbook to tmp dir -->
+		<!-- the output file encoding i sISO-8859-1 -->
 		<exec executable="xsltproc"> 
 			<arg value="--xinclude"/>
 			<arg value="--output"/>
-			<arg value="${out.dir}"/>
+			<arg value="${tmp.dir}"/>
 			<arg value="${docbook.xsl}"/>
 			<arg value="content/index.xml"/>
 		</exec>
-		<!--
-		<replace token="ISO-8859-1" value="UTF-8">
-			<fileset dir="${out.dir}">
-    			<include name="**/*.html"/>
-		</fileset>
-
-		</replace>
-		-->
+		<!-- convert file encoding to UTF-8 -->
+		<!-- write converted files to out dir -->
+		<mapper id="out" type="glob"
+			to="*.html" from="*.html"/>
+		<apply executable="iconv" dest="${out.dir}">
+			<arg value="-f"/> <arg value="iso-8859-1"/>
+			<arg value="-t"/> <arg value="UTF-8"/>
+			<srcfile/>
+			<mapper refid="out"/>
+			  <redirector>
+			    <outputmapper refid="out"/>
+			  </redirector>
+			<fileset dir="${tmp.dir}">
+				<include name="*.html"/>
+			</fileset>
+		</apply>
+		<antcall target="copydirs"></antcall>
+		<exec executable="git">
+			<arg value="add"/>
+			<arg value="."/>
+		</exec>
+		<exec executable="git">
+			<arg value="commit"/>
+			<arg value="-m"/>
+			<arg value="'auto commit'"/>
+		</exec>
+		<exec executable="git">
+			<arg value="push"/>
+			<arg value="-u"/>
+			<arg value="origin"/>
+			<arg value="master"/>
+		</exec>
 	</target>
+	
 	
 	<target name="copydirs">
 		<copy todir="${out.dir}">
