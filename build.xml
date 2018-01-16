@@ -37,7 +37,6 @@
 			    <outputmapper refid="out"/>
 			  </redirector>
 		</apply>
-		<delete dir="${tmp.dir}"></delete>
 	</target>
 	
 	<target name="copydirs">
@@ -74,7 +73,7 @@
 	<target name="show" depends="prepare,copydirs" 
 		description="show local site">
 		<exec executable="open">
-			<arg value="${out.dir}/index.html"/>
+			<arg value="${tmp.dir}/index.html"/>
 		</exec>
 	</target>
 	
