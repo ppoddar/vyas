@@ -3,7 +3,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 
-<xsl:import href="/Users/ppoddar/docbook/html/chunk.xsl"/> 
+<xsl:import href="custom-chunk.xsl"/> 
 <xsl:include href="breadcrumbs.xsl"/>
 
 <xsl:param name="man.output.quietly" select="1"></xsl:param>
