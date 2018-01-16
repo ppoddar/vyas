@@ -7,7 +7,7 @@
 	<property name="out.dir" value="docs/"/>
 	<property name="output.zip" value="vyas-site.zip"/>
 
-	<target name="site" depends="prepare, utf-encoding, copydirs, git-push">
+	<target name="site" depends="prepare, utf-encoding, copydirs">
 	</target>
 	
 	<target name="prepare"
@@ -20,24 +20,23 @@
 			<arg value="${docbook.xsl}"/>
 			<arg value="content/index.xml"/>
 		</exec>
-		<antcall target="copydirs"></antcall>
 	</target>
 	
 	<target name="utf-encoding" description="convert file encoding to UTF-8">
-		<mapper id="out" type="glob" to="*.html" from="*.html"/>
-		<apply executable="iconv" dest="${out.dir}">
-			<arg value="-f"/> <arg value="iso-8859-1"/>
+		<mapper id="out" type="glob" 
+			to="${out.dir}/*.html" 
+			from="*.html"/>
+		<apply executable="iconv"
+			failifexecutionfails="true" failonerror="true">
+			<fileset dir="${tmp.dir}"><include name="*.html"/></fileset>
+			<arg value="-f"/> <arg value="ISO-8859-1"/>
 			<arg value="-t"/> <arg value="UTF-8"/>
 			<srcfile/>
 			<mapper refid="out"/>
 			  <redirector>
 			    <outputmapper refid="out"/>
 			  </redirector>
-			<fileset dir="${tmp.dir}">
-				<include name="*.html"/>
-			</fileset>
 		</apply>
-		<delete dir="${tmp.dir}"></delete>
 	</target>
 	
 	<target name="copydirs">
