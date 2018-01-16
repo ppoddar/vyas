@@ -15,14 +15,14 @@
 			<arg value="${docbook.xsl}"/>
 			<arg value="content/index.xml"/>
 		</exec>
-		
+		<!--
 		<replace token="ISO-8859-1" value="UTF-8">
 			<fileset dir="${out.dir}">
     			<include name="**/*.html"/>
 		</fileset>
 
 		</replace>
-		
+		-->
 	</target>
 	
 	<target name="copydirs">
