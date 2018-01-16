@@ -56,9 +56,7 @@
 			<arg value="add"/>
 			<arg value="."/>
 		</exec>
-		<exec executable="git">
-			<arg value="status"/>
-		</exec>
+	
 		<exec executable="git">
 			<arg value="commit"/>
 			<arg value="-m"/>
