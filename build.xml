@@ -37,6 +37,7 @@
 			    <outputmapper refid="out"/>
 			  </redirector>
 		</apply>
+		<delete dir="${tmp.dir}"></delete>
 	</target>
 	
 	<target name="copydirs">
