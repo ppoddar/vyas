@@ -1,4 +1,4 @@
-bin/
-security/
-html/
+bin/**
+security/**
+html/**
 vyas-site.zip
