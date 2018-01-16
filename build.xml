@@ -61,6 +61,12 @@
 			<arg value="'auto commit'"/>
 		</exec>
 		<exec executable="git">
+			<arg value="diff"/><arg value="--stat"/>
+			<arg value="--cached"/>
+			<arg value="master"/>
+		</exec>
+		
+		<exec executable="git">
 			<arg value="push"/>
 			<arg value="-u"/>
 			<arg value="origin"/>
