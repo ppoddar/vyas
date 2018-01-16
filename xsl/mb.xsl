@@ -19,8 +19,8 @@
 
 
 <xsl:template name="user.head.content">
-      <meta charset="utf-8"/> 
-<!--  
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <!--  
   <meta property="fb:app_id"      content="329600214135336"/> 
   
 -->
