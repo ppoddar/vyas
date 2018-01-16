@@ -1,0 +1,87 @@
+<!-- builds html from Docbook documents -->
+ 
+<project name="mahabharatha" default="prepare">
+	
+	<property name="docbook.xsl"  value="xsl/mb.xsl"/>
+	<property name="out.dir" value="docs/"/>
+	<property name="output.zip" value="vyas-site.zip"/>
+
+
+	<target name="prepare" description="creates pages by docbook">
+		<exec executable="xsltproc"> 
+			<arg value="--xinclude"/>
+			<arg value="--output"/>
+			<arg value="${out.dir}"/>
+			<arg value="${docbook.xsl}"/>
+			<arg value="content/index.xml"/>
+		</exec>
+	</target>
+	
+	<target name="copydirs">
+		<copy todir="${out.dir}">
+			<fileset dir="${basedir}">
+				<include name="css/*"/>
+				<include name="images/*"/>
+				<include name="script/*"/>
+			</fileset>
+		</copy>
+		<copy todir="${out.dir}" file="images/favicon.ico"/>
+	</target>
+	
+	<target name="show" depends="prepare,copydirs" 
+		description="show local site">
+		<exec executable="open">
+			<arg value="${out.dir}/index.html"/>
+		</exec>
+	</target>
+	
+	
+	<target name="show-web" depends="prepare,copydirs" 
+		description="show remote site">
+		<property name="web.site" value="http://ppoddar.github.io/vyas/index.html"></property>
+		<exec executable="open">
+			<arg value="${web.site}"/>
+		</exec>
+	</target>
+
+
+	<property name="link" value="^adi.html"></property>
+	<target name="reg">
+		<replaceregexp
+			file="index.html"
+			match="${link}"
+			replace="${link}#menu"
+			byline="true">
+			
+		</replaceregexp>
+	
+	</target>
+	
+	<target name="clean">
+		<delete file="${output.zip}"></delete>
+		<delete>
+			<fileset dir="${out.dir}">
+			</fileset>
+		</delete>
+
+	</target>
+	
+	<!--
+		<target name="site" depends="prepare,copydirs" 
+			description="create site layout locally">
+			<echo message="creating site at ${output.zip}"/>
+			<zip destfile="${output.zip}">
+				<fileset dir="${out.dir}">
+				</fileset>
+			</zip>
+		</target>
+		
+			<target name="publish" depends="prepare,site">
+		<exec executable="git">
+		</exec>
+	</target>
+		
+	-->
+
+
+</project>

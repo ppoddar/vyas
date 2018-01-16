@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<chapter xml:id="adi" 
+  xmlns="http://docbook.org/ns/docbook" 
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  version="5.0">
+  
+
+  
+  
+  <title>Adi Parva</title>
+  
+  <!-- first section is not shown in TOC. -->
+  <!-- chunking includes the first section with chapter TOC  -->
+  <section role="NotInToc"/>  
+  
+    <xi:include href="banished_from_heaven.xml"/>
+    <xi:include href="ganga_makes_a_pact.xml"/>
+    <xi:include href="babies_floated_in_river.xml"/>
+    <xi:include href="curse_of_octobasu.xml"/>
+    <xi:include href="lost_son_returns.xml"/>
+    <xi:include href="marriage_proposal.xml"/>
+    <xi:include href="pledge_like_none.xml"/>
+    <xi:include href="visma_goes_for_bride.xml"/>
+    <xi:include href="surrogate_birth.xml"/>
+    <xi:include href="vyaas_comes_to_rescue.xml"/>
+    <xi:include href="birth_of_kurus.xml"/>
+    <xi:include href="birth_of_karna.xml"/>
+    <xi:include href="death_of_pandu.xml"/>
+    
+    <para>
+      <mediaobject>
+    <imageobject>
+    		<imagedata fileref="./images/geneology.svg" format="svg"></imagedata>
+    	</imageobject>
+  
+  </mediaobject>
+  
+    
+    
+    
+    </para>
+  
+</chapter>

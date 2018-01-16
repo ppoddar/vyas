@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<book xml:id="mb"
+  xmlns="http://docbook.org/ns/docbook" 
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  version="5.0">
+
+    <xi:include href="chapter/adi/introduction.xml"/>
+    <xi:include href="chapter/vana/introduction.xml"/>
+    
+    <xi:include href="about.xml"/>
+    <xi:include href="note.xml"/>
+
+
+    <index>
+      <?dbhtml filname="glossary"?>
+    	  <title>Actors</title>
+    </index>
+
+</book>
